@@ -8,7 +8,7 @@ import numpy as np
 
 
 ## tools
-def pos_real_roots(p,imtol=1e-6):
+def pos_real_roots(p,imtol=1e-3):
 	"""
 	Return the sorted positive real roots of a polynomial.
 	p is an array of coefficients of the polynomial
@@ -132,7 +132,7 @@ class HKN:
 		Horizons in case eps = 0.
 		"""
 		l, M, Q, a = 1.*self.l, 1.*self.M, 1.*self.Q, 1.*self.a
-		return 1. * pos_real_roots(np.array([1., 2.*M, (a**2 - Q**2), 2.*M*l**2, Q**2*l**2, 2.*M*l**2*a**2, Q**2*l**2*a**2]))
+		return 1. * pos_real_roots(np.array([1., -2.*M, (a**2 - Q**2), -2.*M*l**2, Q**2*l**2, -2.*M*l**2*a**2, Q**2*l**2*a**2]))
 
 	def ei(self,th):
 		"""

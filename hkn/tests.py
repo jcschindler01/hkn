@@ -14,6 +14,8 @@ from hkn import HKN
 
 ## tests
 def check_m_derivatives(h):
+	## print
+	print("check_m_derivatives")
 	## r
 	r = np.linspace(1e-9,3.*h.M,5001)
 	## numerical derivs
@@ -40,18 +42,42 @@ def check_m_derivatives(h):
 	plt.show()
 
 
+def check_horizons(h):
+	## print
+	print("check_horizons")
+	## get horizon radii
+	ri = 1.*h.ri()
+	print("ri")
+	print(ri)
+	## check zero
+	zero = ri**2 - 2.*h.m(ri)*ri + h.a**2
+	print("zero")
+	print(zero)
+	## plot
+	r = np.linspace(1e-9,3.*h.M,5001)
+	plt.plot(r, h.m(r), '.7')
+	plt.plot(r, 0.*r, 'r-')
+	plt.plot(r, r**2 - 2.*h.m(r)*r + h.a**2, 'k-')
+	plt.plot(ri, 0.*ri, 'co')
+	plt.grid()
+	plt.show()
+
+
 ## main
 def main():
+	## print
+	print("main")
 	## params
 	l = 1.*rand()
 	M = 100.*l*rand()
-	Q = M*rand()
-	a = M*rand()
+	Q = 1.*M*rand()
+	a = 1.*M*rand()
 	eps = 0.
 	## make metric
 	h = HKN(l=1.*l, M=1.*M, Q=1.*Q, a=1.*a, eps=1.*eps)
 	## run tests
-	check_m_derivatives(h)
+	#check_m_derivatives(h)
+	check_horizons(h)
 
 
 
