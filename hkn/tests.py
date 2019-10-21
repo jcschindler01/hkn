@@ -62,6 +62,22 @@ def check_horizons(h):
 	plt.grid()
 	plt.show()
 
+def check_ergosurfaces(h):
+	## print
+	print("check_ergosurfaces")
+	## theta
+	th = np.pi*np.linspace(0,1,1001)
+	## get ergosurface radii
+	ei = 1.*h.ei(th)
+	print("ei")
+	print(ei)
+	## check zero
+	if len(ei)>0:
+		zero = np.nanmax(np.abs(ei**2 - 2.*h.m(ei)*ei + h.a**2 * np.cos(th)**2))
+		print("zero")
+		print(zero)
+
+
 
 ## main
 def main():
@@ -78,6 +94,7 @@ def main():
 	## run tests
 	#check_m_derivatives(h)
 	check_horizons(h)
+	check_ergosurfaces(h)
 
 
 

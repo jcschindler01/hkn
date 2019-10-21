@@ -141,8 +141,22 @@ class HKN:
 		Roots of r^2 - 2 r m(r) + a^2 cos^2(th) = 0.
 		Return array of ergosurface radii given array of theta values.
 		"""
+		## params
 		l, M, Q, a = 1.*self.l, 1.*self.M, 1.*self.Q, 1.*self.a
-		return np.dstack([pos_real_roots(np.array([1., 2.*M, (a**2*np.cos(thx)**2 - Q**2), 2.*M*l**2, Q**2*l**2, 2.*M*l**2*a**2*np.cos(thx)**2, Q**2*l**2*a**2*np.cos(thx)**2])) for thx in th])[0]
+		## get number of ergosurfaces on th=0 plane
+		A = 0.
+		ni = len(pos_real_roots(np.array([1., -2.*M, (A**2 + Q**2), 2.*M*l**2, Q**2*l**2, 2.*M*l**2*A**2, Q**2*l**2*A**2])))
+		## initialize output
+		ei = np.nan * np.ones((ni,len(th)))
+		##
+		for i in range(len(th)):
+			A = self.a * np.cos(th[i])
+			roots = pos_real_roots(np.array([1., -2.*M, (A**2 + Q**2), 2.*M*l**2, Q**2*l**2, 2.*M*l**2*A**2, Q**2*l**2*A**2]))
+			if len(roots)==ni:
+				ei[:,i] = 1.*roots
+		## return
+		return 1.*ei
+
 
 
 
