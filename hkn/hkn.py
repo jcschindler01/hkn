@@ -40,6 +40,8 @@ class HKN:
 	def __init__(self, l=1.0, M=50., Q=0.0, a=0.0, eps=0.0):
 		## params
 		self.l, self.M, self.Q, self.a, self.eps = 1.*l, 1.*M, 1.*Q, 1.*a, 1.*eps
+		print("HKN metric")
+		print("l = %.1f, M = %.1f, Q = %.1f, a = %.1f, eps = %.1f"%(l,M,Q,a,eps))
 
 	## mass functions
 	def m(self,r):
