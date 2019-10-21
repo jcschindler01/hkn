@@ -148,7 +148,7 @@ class HKN:
 		ni = len(pos_real_roots(np.array([1., -2.*M, (A**2 + Q**2), 2.*M*l**2, Q**2*l**2, 2.*M*l**2*A**2, Q**2*l**2*A**2])))
 		## initialize output
 		ei = np.nan * np.ones((ni,len(th)))
-		##
+		## fill values
 		for i in range(len(th)):
 			A = self.a * np.cos(th[i])
 			roots = pos_real_roots(np.array([1., -2.*M, (A**2 + Q**2), 2.*M*l**2, Q**2*l**2, 2.*M*l**2*A**2, Q**2*l**2*A**2]))
